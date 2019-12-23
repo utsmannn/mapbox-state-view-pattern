@@ -17,4 +17,4 @@ Implementation of maps state view pattern for Mapbox SDK with single maps callba
 ```
 
 ---
-thanks
+thanks .
