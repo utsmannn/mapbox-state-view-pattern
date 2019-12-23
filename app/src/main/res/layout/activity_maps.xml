@@ -18,14 +18,21 @@
         <Button
             android:layout_width="0dp"
             android:id="@+id/btn_state_1"
-            android:text="state 1"
+            android:text="jakarta"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
         <Button
             android:layout_width="0dp"
             android:id="@+id/btn_state_2"
-            android:text="state 2"
+            android:text="bekasi"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:id="@+id/btn_state_polygon"
+            android:text="polygon"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 

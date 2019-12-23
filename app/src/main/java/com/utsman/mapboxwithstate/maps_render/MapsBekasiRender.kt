@@ -17,13 +17,11 @@ class MapsBekasiRender(private val context: Context):
 
     private var marker: Marker? = null
 
-    override fun render(mapboxMap: MapboxMap) {
+    override fun render(mapboxMap: MapboxMap, style: Style) {
 
         // bekasi
         val lat = -6.241586
         val lon = 106.992416
-
-        mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat,lon), 12.0))
 
         val markerOption = MarkerOptions.Builder()
             .setId("marker-id-2", true)

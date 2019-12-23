@@ -1,7 +1,6 @@
 package com.utsman.mapboxwithstate.maps_render
 
 import android.content.Context
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
@@ -17,13 +16,11 @@ class MapsJakartaRender(private val context: Context) :
 
     private var marker: Marker? = null
 
-    override fun render(mapboxMap: MapboxMap) {
+    override fun render(mapboxMap: MapboxMap, style: Style) {
 
         // jakarta
         val lat = -6.21462
         val lon = 106.84513
-
-        mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat,lon), 12.0))
 
         val markerOption = MarkerOptions.Builder()
             .setId("marker-id", true)

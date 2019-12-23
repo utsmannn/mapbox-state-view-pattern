@@ -13,6 +13,7 @@ class MainState(private val mainStateView: MainStateView) {
     private val composite = CompositeDisposable()
     private var mapsJakartaState: BaseRenderView? = null
     private var mapsBekasiState: BaseRenderView? = null
+    private var mapsPolygon: BaseRenderView? = null
 
     fun renderMapsJakarta(map: MapboxMap, style: Style) {
         val observable =  Observable.just(map)
@@ -22,7 +23,7 @@ class MainState(private val mainStateView: MainStateView) {
                 removeAll(style)
             }
             .subscribe({
-                mapsJakartaState = mainStateView.mapsJakarta(it)
+                mapsJakartaState = mainStateView.mapsJakarta(it, style)
             }, {
                 it.printStackTrace()
             })
@@ -38,7 +39,23 @@ class MainState(private val mainStateView: MainStateView) {
                 removeAll(style)
             }
             .subscribe({
-                mapsBekasiState = mainStateView.mapsBekasi(it)
+                mapsBekasiState = mainStateView.mapsBekasi(it, style)
+            }, {
+                it.printStackTrace()
+            })
+
+        composite.add(observable)
+    }
+
+    fun renderPolygon(map: MapboxMap, style: Style) {
+        val observable = Observable.just(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext {
+                removeAll(style)
+            }
+            .subscribe({
+                mapsPolygon = mainStateView.mapsPolygon(map, style)
             }, {
                 it.printStackTrace()
             })
@@ -53,5 +70,6 @@ class MainState(private val mainStateView: MainStateView) {
     private fun removeAll(style: Style) {
         mapsJakartaState?.remove(style)
         mapsBekasiState?.remove(style)
+        mapsPolygon?.remove(style)
     }
 }
